@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, ScrollView } from 'react-native';
+import { Avatar, Button, Card, Divider, List, Paragraph, Title } from 'react-native-paper';
+import Home from './src/screens/Home';
+import CriaturasIndice from './src/screens/Criaturas/CriaturasIndice';
+import MateriaisIndice from'./src/screens/Materiais/MateriaisIndice';
+import MateriaisDetalhes from'./src/screens/Materiais/MateriaisDetalhes';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+export default function App(props) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    < NavigationContainer>
+      <Stack.Navigator initialRouteName="filmes/populares">
+        <Stack.Screen name="Home" component={Home} options={{ title: 'Página Inicial' }} />
+        <Stack.Screen name="Criaturas" component={CriaturasIndice} options={{ title: 'Índice de Criaturas' }} />
+        <Stack.Screen name="Materiais" component={MateriaisIndice} options={{ title: 'Índice de Materiais' }} />
+        <Stack.Screen name="Materiais/Detalhes" component={MateriaisDetalhes} options={{ title: 'Detalhe de Material' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
