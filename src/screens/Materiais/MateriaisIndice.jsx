@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import apiZelda from '../../services/apiZelda'
 import { Row, Column as Col } from 'react-native-responsive-grid'
 
-function MateriaisIndice({ navigation }) {
+const MateriaisIndice = ({ navigation }) => {
 
     const [materiais, setMateriais] = useState([])
 

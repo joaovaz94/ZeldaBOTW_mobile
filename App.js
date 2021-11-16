@@ -17,7 +17,7 @@ export default function App(props) {
         <Stack.Screen name="Home" component={Home} options={{ title: 'Página Inicial' }} />
         <Stack.Screen name="Criaturas" component={CriaturasIndice} options={{ title: 'Índice de Criaturas' }} />
         <Stack.Screen name="Materiais" component={MateriaisIndice} options={{ title: 'Índice de Materiais' }} />
-        <Stack.Screen name="Materiais/Detalhes" component={MateriaisDetalhes} options={{ title: 'Detalhe de Material' }} />
+        <Stack.Screen name="Materiais/Detalhes" component={MateriaisDetalhes} options={{ title: 'Detalhes de Material' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

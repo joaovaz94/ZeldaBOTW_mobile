@@ -1,10 +1,10 @@
-import { Button, Card, Title} from 'react-native-paper'
-import { Image, ScrollView, Paragraph } from 'react-native'
+import { Button, Card, Title, Paragraph  } from 'react-native-paper'
+import { Image, ScrollView, TouchableHighlight } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import apiZelda from '../../services/apiZelda'
 import { Row, Column as Col } from 'react-native-responsive-grid'
 
-function MateriaisIndice({ navigation, route }) {
+const MateriaisDetalhes = ({ navigation, route }) => {
 
     const [material, setMaterial] = useState({})
 
@@ -12,10 +12,10 @@ function MateriaisIndice({ navigation, route }) {
 
         const id = route.params.id
 
-        apiZelda.get('/entry/materials' + id).then(resultado => {
+        apiZelda.get('/entry/' + id).then(resultado => {
             setMaterial(resultado.data.data)
-            console;log(resultado.data.data)
         })
+
     }, [])
     return (
         <>
@@ -27,20 +27,26 @@ function MateriaisIndice({ navigation, route }) {
                 Materiais
             </Button>
 
-            <ScrollView margin={10}>
-
+           <ScrollView margin={9}>
                 <Card>
                     <Image
-                        style={{ height: 300, margin: 5 }}
-                        source={{ uri: material.image }}
+                        style={{height: 300, margin: 5}}    
+                        source={{uri: material.image}}
                     />
                     <Title>{material.name}</Title>
-                    <Paragraph>{material.name}</Paragraph>
-                    <Paragraph>Categoria: {material.category}</Paragraph>
+                    <Paragraph>{material.description}</Paragraph>
+                    <Title>Categoria: 
+                        <TouchableHighlight 
+                            onPress={() => navigation.push('Materiais')}>
+                         <Title> {material.category}</Title>
+                        </TouchableHighlight>
+                    </Title>
                 </Card>
-            </ScrollView>
+                
+            </ScrollView> 
+            
         </>
     )
 }
 
-export default MateriaisIndice
+export default MateriaisDetalhes
