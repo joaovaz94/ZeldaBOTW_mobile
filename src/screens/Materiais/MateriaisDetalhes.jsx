@@ -20,11 +20,8 @@ const MateriaisDetalhes = ({ navigation, route }) => {
     return (
         <>
 
-            <Button marginTop={10} icon="home" mode="contained" onPress={() => navigation.push('Criaturas')}>
-                Criaturas
-            </Button>
-            <Button marginTop={10} icon="home" mode="contained" onPress={() => navigation.push('Materiais')}>
-                Materiais
+            <Button marginTop={10} icon="home" mode="contained" onPress={() => navigation.push('Home')}>
+                Home
             </Button>
 
            <ScrollView margin={9}>
@@ -41,6 +38,7 @@ const MateriaisDetalhes = ({ navigation, route }) => {
                          <Title> {material.category}</Title>
                         </TouchableHighlight>
                     </Title>
+                    <Paragraph>Efeitos ao cozinhar: {material.cooking_effect}</Paragraph>
                 </Card>
                 
             </ScrollView> 

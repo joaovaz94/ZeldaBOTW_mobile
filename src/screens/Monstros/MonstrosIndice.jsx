@@ -4,13 +4,13 @@ import { Image, ScrollView, Text, TouchableOpacity } from 'react-native'
 import apiZelda from '../../services/apiZelda'
 import { Row, Column as Col } from 'react-native-responsive-grid'
 
-const CriaturasIndice = ({navigation}) => {
+const MonstrosIndice = ({navigation}) => {
 
-    const [criaturas, setCriaturas] = useState([])
+    const [monstros, setMonstros] = useState([])
 
     useEffect(() => {
-        apiZelda.get('/category/creatures').then(resultado => {
-            setCriaturas(resultado.data.data.non_food)
+        apiZelda.get('/category/monsters').then(resultado => {
+            setMonstros(resultado.data.data)
         })
     }, [])
 
@@ -23,16 +23,16 @@ const CriaturasIndice = ({navigation}) => {
 
             <ScrollView margin={10}>
                 <Row>
-                  {criaturas.map(criatura => (
-                        <Col size={49} key={criatura.id} >
+                  {monstros.map(monstro => (
+                        <Col size={49} key={monstro.id} >
                             <TouchableOpacity
-                                onPress={() => navigation.push('Criaturas/Detalhes', { id: criatura.id })}>
+                                onPress={() => navigation.push('Monstros/Detalhes', { id: Monstro.id })}>
                                 <Image
                                     style={{ height: 300, margin: 5 }}
-                                    source={{ uri: criatura.image }}
+                                    source={{ uri: monstro.image }}
                                 />
                             </TouchableOpacity>
-                            <Text>{criatura.name}</Text>
+                            <Text>{monstro.name}</Text>
                         </Col>
                     ))} 
                 </Row>
@@ -41,4 +41,4 @@ const CriaturasIndice = ({navigation}) => {
     )
 }
 
-export default CriaturasIndice
+export default MonstrosIndice

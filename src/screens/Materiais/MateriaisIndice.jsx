@@ -16,19 +16,16 @@ const MateriaisIndice = ({ navigation }) => {
     return (
         <>
 
-            <Button marginTop={10} icon="home" mode="contained" onPress={() => navigation.push('Criaturas')}>
-                Criaturas
-            </Button>
-            <Button marginTop={10} icon="home" mode="contained" onPress={() => navigation.push('Materiais')}>
-                Materiais
+            <Button marginTop={10} icon="home" mode="contained" onPress={() => navigation.push('Home')}>
+                Home
             </Button>
 
             <ScrollView margin={10}>
-
+                {materiais.length == 0 && <Image source={require('../../../assets/img/link_escalando.gif')}></Image>}
+                {materiais.length > 0 &&
                 <Row>
                     {materiais.map(material => (
                         <Col size={49} key={material.id} >
-                            <Text>{material.name}</Text>
                             <TouchableOpacity
                                 onPress={() => navigation.push('Materiais/Detalhes', { id: material.id })}>
                                 <Image
@@ -36,9 +33,11 @@ const MateriaisIndice = ({ navigation }) => {
                                     source={{ uri: material.image }}
                                 />
                             </TouchableOpacity>
+                            <Text>{material.name}</Text>
                         </Col>
                     ))} 
                 </Row>
+                }
             </ScrollView>
         </>
     )
