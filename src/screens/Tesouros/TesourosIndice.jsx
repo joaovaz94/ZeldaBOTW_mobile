@@ -22,6 +22,13 @@ const TesourosIndice = ({navigation}) => {
             </Button> 
 
             <ScrollView margin={10}>
+                {tesouros.length == 0 &&
+                    <>
+                        <Image source={require('../../../assets/img/link_escalando.gif')} />
+                        <Text>Carregando ...</Text>
+                    </>
+                }
+                {tesouros.length > 0 &&
                 <Row>
                   {tesouros.map(tesouro => (
                         <Col size={49} key={tesouro.id} >
@@ -36,6 +43,7 @@ const TesourosIndice = ({navigation}) => {
                         </Col>
                     ))} 
                 </Row>
+                }
             </ScrollView>
         </>
     )

@@ -1,5 +1,5 @@
 import { Button, Card, Title, Paragraph, List, Divider  } from 'react-native-paper'
-import { Image, ScrollView, TouchableHighlight,  View } from 'react-native'
+import { Image, ScrollView, TouchableHighlight,  View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import apiZelda from '../../services/apiZelda'
 import { Row, Column as Col } from 'react-native-responsive-grid'
@@ -34,6 +34,13 @@ const MonstrosDetalhes = ({ navigation, route }) => {
             </Button>
 
            <ScrollView margin={9}>
+                {!detalhe.id  && 
+                    <>
+                        <Image source={require('../../../assets/img/link_escalando.gif')}/>
+                        <Text>Carregando ...</Text>
+                    </>
+                }
+                {detalhe.id  &&
                 <Card>
                     <Image
                         style={{height: 300, margin: 5}}    
@@ -67,7 +74,7 @@ const MonstrosDetalhes = ({ navigation, route }) => {
                         ))}
                     </Paragraph>
                 </Card>
-                
+                } 
             </ScrollView> 
             
         </>

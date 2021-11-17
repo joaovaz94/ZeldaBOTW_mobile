@@ -1,5 +1,5 @@
 import { Button, Card, Title, Paragraph  } from 'react-native-paper'
-import { Image, ScrollView, TouchableHighlight } from 'react-native'
+import { Image, ScrollView, TouchableHighlight, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import apiZelda from '../../services/apiZelda'
 import { Row, Column as Col } from 'react-native-responsive-grid'
@@ -25,6 +25,13 @@ const MateriaisDetalhes = ({ navigation, route }) => {
             </Button>
 
            <ScrollView margin={9}>
+                {!material.id  && 
+                    <>
+                        <Image source={require('../../../assets/img/link_escalando.gif')}/>
+                        <Text>Carregando ...</Text>
+                    </>
+                }
+                {material.id  &&
                 <Card>
                     <Image
                         style={{height: 300, margin: 5}}    
@@ -40,7 +47,7 @@ const MateriaisDetalhes = ({ navigation, route }) => {
                     </Title>
                     <Paragraph>Efeitos ao cozinhar: {material.cooking_effect}</Paragraph>
                 </Card>
-                
+                } 
             </ScrollView> 
             
         </>

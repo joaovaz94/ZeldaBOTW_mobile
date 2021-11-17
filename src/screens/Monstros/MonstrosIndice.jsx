@@ -22,11 +22,18 @@ const MonstrosIndice = ({navigation}) => {
             </Button> 
 
             <ScrollView margin={10}>
+                {monstros.length == 0 &&
+                    <>
+                        <Image source={require('../../../assets/img/link_escalando.gif')} />
+                        <Text>Carregando ...</Text>
+                    </>
+                }
+                {monstros.length > 0 &&
                 <Row>
                   {monstros.map(monstro => (
                         <Col size={49} key={monstro.id} >
                             <TouchableOpacity
-                                onPress={() => navigation.push('Monstros/Detalhes', { id: Monstro.id })}>
+                                onPress={() => navigation.push('Monstros/Detalhes', { id: monstro.id })}>
                                 <Image
                                     style={{ height: 300, margin: 5 }}
                                     source={{ uri: monstro.image }}
@@ -36,6 +43,7 @@ const MonstrosIndice = ({navigation}) => {
                         </Col>
                     ))} 
                 </Row>
+                }
             </ScrollView>
         </>
     )

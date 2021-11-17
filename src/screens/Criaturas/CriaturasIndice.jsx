@@ -16,26 +16,34 @@ const CriaturasIndice = ({navigation}) => {
 
     return (
         <>
-            
-           <Button marginTop={10} icon="home" mode="contained" onPress={() => navigation.push('Home')}>
+
+            <Button marginTop={10} icon="home" mode="contained" onPress={() => navigation.push('Home')}>
                 Home
-            </Button> 
+            </Button>
 
             <ScrollView margin={10}>
-                <Row>
-                  {criaturas.map(criatura => (
-                        <Col size={49} key={criatura.id} >
-                            <TouchableOpacity
-                                onPress={() => navigation.push('Criaturas/Detalhes', { id: criatura.id })}>
-                                <Image
-                                    style={{ height: 300, margin: 5 }}
-                                    source={{ uri: criatura.image }}
-                                />
-                            </TouchableOpacity>
-                            <Text>{criatura.name}</Text>
-                        </Col>
-                    ))} 
-                </Row>
+                {criaturas.length == 0 &&
+                    <>
+                        <Image source={require('../../../assets/img/link_escalando.gif')} />
+                        <Text>Carregando ...</Text>
+                    </>
+                }
+                {criaturas.length > 0 &&
+                    <Row>
+                        {criaturas.map(criatura => (
+                            <Col size={49} key={criatura.id} >
+                                <TouchableOpacity
+                                    onPress={() => navigation.push('Criaturas/Detalhes', { id: criatura.id })}>
+                                    <Image
+                                        style={{ height: 300, margin: 5 }}
+                                        source={{ uri: criatura.image }}
+                                    />
+                                </TouchableOpacity>
+                                <Text>{criatura.name}</Text>
+                            </Col>
+                        ))}
+                    </Row>
+                }
             </ScrollView>
         </>
     )

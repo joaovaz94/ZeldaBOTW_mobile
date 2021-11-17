@@ -22,6 +22,13 @@ const EquipamentosIndice = ({navigation}) => {
             </Button> 
 
             <ScrollView margin={10}>
+                {equipamentos.length == 0 &&
+                    <>
+                        <Image source={require('../../../assets/img/link_escalando.gif')} />
+                        <Text>Carregando ...</Text>
+                    </>
+                }
+                {equipamentos.length > 0 &&
                 <Row>
                   {equipamentos.map(equipamento => (
                         <Col size={49} key={equipamento.id} >
@@ -36,6 +43,7 @@ const EquipamentosIndice = ({navigation}) => {
                         </Col>
                     ))} 
                 </Row>
+                }
             </ScrollView>
         </>
     )

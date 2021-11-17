@@ -21,7 +21,12 @@ const MateriaisIndice = ({ navigation }) => {
             </Button>
 
             <ScrollView margin={10}>
-                {materiais.length == 0 && <Image source={require('../../../assets/img/link_escalando.gif')}></Image>}
+                {materiais.length == 0 && 
+                    <>
+                        <Image source={require('../../../assets/img/link_escalando.gif')}/>
+                        <Text>Carregando ...</Text>
+                    </>
+                }
                 {materiais.length > 0 &&
                 <Row>
                     {materiais.map(material => (

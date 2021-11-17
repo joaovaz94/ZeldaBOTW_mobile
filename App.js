@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { Text, ScrollView } from 'react-native';
-import { Avatar, Button, Card, Divider, List, Paragraph, Title } from 'react-native-paper';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Home from './src/screens/Home';
 import CriaturasIndice from './src/screens/Criaturas/CriaturasIndice';
 import MateriaisIndice from'./src/screens/Materiais/MateriaisIndice';
@@ -17,9 +17,20 @@ import TesourosDetalhes from './src/screens/Tesouros/TesourosDetalhes';
 
 const Stack = createNativeStackNavigator();
 
+const theme = {
+  ...DefaultTheme,
+  // Specify custom property
+  dark: false,
+  // Specify custom property in nested object
+  colors: {
+    background: '#031835',
+  }
+};
+
 export default function App(props) {
   return (
-    < NavigationContainer>
+    <PaperProvider theme={theme}>
+    <NavigationContainer>
       <Stack.Navigator initialRouteName="filmes/populares">
         <Stack.Screen name="Home" component={Home} options={{ title: 'Página Inicial' }} />
         <Stack.Screen name="Criaturas" component={CriaturasIndice} options={{ title: 'Índice de Criaturas' }} />
@@ -34,5 +45,6 @@ export default function App(props) {
         <Stack.Screen name="Tesouros/Detalhes" component={TesourosDetalhes} options={{ tiyle: 'Detalhes de Tesouros' }} />
       </Stack.Navigator>
     </NavigationContainer>
+    </PaperProvider>
   );
 }
